@@ -1,0 +1,23 @@
+.header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: aqua;
+
+  &__nav {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  &__items {
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    list-style-type: none;
+  }
+
+  &__item {
+    text-decoration: none;
+    font-size: 20px;
+  }
+}

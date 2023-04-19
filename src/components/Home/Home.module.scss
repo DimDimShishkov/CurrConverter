@@ -1,0 +1,12 @@
+@import '../../styles/mixins.scss';
+
+.section {
+  @include section();
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  width: 100%;
+  max-width: 400px;
+}
