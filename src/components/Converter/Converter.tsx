@@ -14,8 +14,8 @@ export const Converter = () => {
   const [currencyOut, setCurrencyOut] = useState('AMD');
   const [selectedCurrIn, setSelectedCurrIn] = useState('RUB');
   const [selectedCurrOut, setSelectedCurrOut] = useState('USD');
-  const [inputCurrIn, setInputCurrIn] = useState<number>(0);
-  const [inputCurrOut, setInputCurrOut] = useState<number>(0);
+  const [inputCurrIn, setInputCurrIn] = useState<number>();
+  const [inputCurrOut, setInputCurrOut] = useState<number>();
   const [isLoading, setIsLoading] = useState(true);
   const [currList, setCurrList] = useState<CurrencyType>([]);
   const impCurrency = ['RUB', 'USD', 'EUR'];
@@ -72,12 +72,15 @@ export const Converter = () => {
 
   const handleChangeConverse = () => {
     const leftInput = inputCurrIn;
+    const leftCurrencyIn = currencyIn;
     const leftCurrency = selectedCurrIn;
     handleCurrencyValues(selectedCurrOut);
     setSelectedCurrIn(() => selectedCurrOut);
     setSelectedCurrOut(() => leftCurrency);
     setInputCurrIn(() => inputCurrOut);
     setInputCurrOut(() => leftInput);
+    setCurrencyIn(currencyOut);
+    setCurrencyOut(leftCurrencyIn);
   };
 
   return (
@@ -124,7 +127,14 @@ export const Converter = () => {
           </div>
 
           <div className={styles.input_box}>
-            <input className={styles.input} type="number" value={inputCurrIn} id="currIn" onChange={onChangeInput} />
+            <input
+              className={styles.input}
+              type="number"
+              value={inputCurrIn || ''}
+              id="currIn"
+              onChange={onChangeInput}
+              placeholder={converterTextInput}
+            />
             {isLoading ? (
               <p className={styles.rate}>loading...</p>
             ) : (
@@ -135,7 +145,9 @@ export const Converter = () => {
           </div>
         </div>
 
-        <span className={styles.arrow} onClick={() => handleChangeConverse()}></span>
+        <div className={styles.arrow}>
+          <span className={styles.span} onClick={() => handleChangeConverse()}></span>
+        </div>
 
         <div className={styles.container}>
           <div className={styles.heading}>{converterTextOutput}</div>
@@ -178,7 +190,14 @@ export const Converter = () => {
           </div>
 
           <div className={styles.input_box}>
-            <input className={styles.input} type="number" value={inputCurrOut} id="currOut" onChange={onChangeInput} />
+            <input
+              className={styles.input}
+              type="number"
+              value={inputCurrOut || ''}
+              id="currOut"
+              onChange={onChangeInput}
+              placeholder={converterTextOutput}
+            />
             {isLoading ? (
               <p className={styles.rate}>loading...</p>
             ) : (

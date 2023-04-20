@@ -11,21 +11,23 @@ export const Header = () => {
 
   return (
     <header className={styles.header}>
-      <Link to="/" className={styles.header__logo}></Link>
-      <nav className={styles.header__nav}>
-        <ul className={styles.header__items}>
-          <li>
-            <Link to="/" className={styles.header__item}>
-              {toHomeLinkText}
-            </Link>
-          </li>
-          <li>
-            <Link to="/converter" className={styles.header__item}>
-              {toConverterLinkText}
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      <div className={styles.header__container}>
+        <Link to="/" className={styles.header__logo}></Link>
+        <nav className={styles.header__nav}>
+          <ul className={styles.header__items}>
+            <li>
+              <Link to="/" className={styles.header__item}>
+                {toHomeLinkText}
+              </Link>
+            </li>
+            <li>
+              <Link to="/converter" className={styles.header__item}>
+                {toConverterLinkText}
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 };

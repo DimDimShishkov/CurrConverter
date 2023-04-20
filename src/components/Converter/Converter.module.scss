@@ -9,18 +9,40 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
+  align-items: flex-end;
   gap: 20px;
+  position: relative;
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    gap: 0;
+  }
 }
 
 .container {
   width: 40%;
   max-width: 500px;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    padding: 0;
+
+    &:last-child {
+      flex-direction: column-reverse;
+    }
+  }
 }
 
 .heading {
   font-size: 16px;
   color: whitesmoke;
   margin: 10px 0;
+
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
 }
 
 .currencies {
@@ -28,6 +50,11 @@
   flex-direction: row;
   height: 80px;
   padding: 12px 0;
+
+  @media screen and (max-width: 700px) {
+    height: 30px;
+    padding: 0;
+  }
 }
 
 .currency {
@@ -72,11 +99,16 @@
 }
 
 .input_box {
-  margin: 24px 0;
   padding: 30px 20px 15px;
   border: 1px solid #cdcdcd;
   background-color: whitesmoke;
   border-radius: 5px;
+
+  @media screen and (max-width: 700px) {
+    margin: 0;
+    border-radius: 0;
+    padding: 10px;
+  }
 }
 
 .input {
@@ -89,18 +121,55 @@
   font-family: GraphikCy-Semibold, 'Helvetica CY', Arial, sans-serif;
   border-radius: 4px;
   background-color: transparent;
+
+  @media screen and (max-width: 700px) {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
 }
 
 .rate {
   text-transform: uppercase;
   color: #777;
   margin: 0;
+
+  @media screen and (max-width: 700px) {
+    font-size: 12px;
+  }
 }
 
 .arrow {
-  padding-top: 350px;
+  position: relative;
+  margin-bottom: 50px;
   width: 50px;
   height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 700px) {
+    position: absolute;
+    top: calc(50% - 25px);
+    right: 10px;
+    z-index: 5;
+    margin: 0;
+    background-color: aliceblue;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+}
+
+.span {
+  display: block;
+  width: 40px;
+  height: 40px;
   background: url(./../../assets/transfer.svg) center no-repeat;
-  background-size: 50px;
+  background-size: 40px;
+
+  @media screen and (max-width: 700px) {
+    width: 30px;
+    height: 30px;
+    background-size: 30px;
+    background: url(./../../assets/reverse.svg) center no-repeat;
+  }
 }

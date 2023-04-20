@@ -1,0 +1,34 @@
+@import '../../styles/mixins.scss';
+
+.section {
+  @include section();
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  margin: 0 0 40px;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 38px;
+
+  @media screen and (max-width: 700px) {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+.link {
+  font-size: 25px;
+  line-height: 30px;
+  transition: all 0.3s ease;
+  text-decoration: underline;
+  color: aqua;
+
+  &:hover {
+    color: aliceblue;
+  }
+}

@@ -17,6 +17,11 @@
   font-weight: bold;
   font-size: 32px;
   line-height: 38px;
+
+  @media screen and (max-width: 700px) {
+    font-size: 20px;
+    line-height: 24px;
+  }
 }
 
 .button {
@@ -57,21 +62,25 @@
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 3fr 60px;
   width: 100%;
   max-width: 500px;
   border-bottom: 1px solid rgb(224, 224, 224);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 5px 10px;
 }
 
 .heading {
   margin: 0px;
   font-weight: 500;
-  font-size: 1.25rem;
-  line-height: 1.6;
-  letter-spacing: 0.0075em;
+  font-size: 20px;
+  line-height: 25px;
+
+  @media screen and (max-width: 700px) {
+    font-size: 14px;
+    line-height: 16px;
+  }
 }
 
 .subheading {
@@ -80,4 +89,9 @@
   font-size: 1rem;
   line-height: 1.5;
   letter-spacing: 0.00938em;
+
+  @media screen and (max-width: 700px) {
+    font-size: 12px;
+    line-height: 16px;
+  }
 }

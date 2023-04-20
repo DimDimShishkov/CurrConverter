@@ -20,9 +20,9 @@ function App() {
     setLang(handleLanguage(res.data.country));
   };
 
-  // useEffect(() => {
-  //   handleGeoCheck();
-  // }, []);
+  useEffect(() => {
+    handleGeoCheck();
+  }, []);
 
   return (
     <BrowserRouter>
