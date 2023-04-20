@@ -2,22 +2,34 @@
   position: fixed;
   left: 0;
   right: 0;
-  background-color: aqua;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+
+  &__logo {
+    background: url(../../assets/header_logo.svg) center no-repeat;
+    background-size: 40px;
+    width: 50px;
+    height: 50px;
+  }
 
   &__nav {
     max-width: 600px;
-    margin: 0 auto;
   }
 
   &__items {
     padding: 0;
     display: flex;
-    gap: 20px;
+    gap: 60px;
     list-style-type: none;
   }
 
   &__item {
     text-decoration: none;
     font-size: 20px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
   }
 }

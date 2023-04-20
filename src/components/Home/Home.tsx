@@ -1,46 +1,49 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './Home.module.scss';
-import { LanguagePrefix, CurrencyDesc, CurrencyType } from './../../shared/index';
+import { CurrencyDesc, CurrencyType } from './../../shared/index';
 import { handleCurrency } from 'src/utils/hooks';
 import { getAllCurrency } from 'src/api/api';
+import Loader from '../Loader/Loader';
+import { langContext } from 'src/utils/langContext';
 
-interface IProps {
-  lang: LanguagePrefix;
-}
-
-export const Home: FC<IProps> = ({ lang }) => {
+export const Home = () => {
+  const lang = useContext(langContext);
   const [currency, setCurrency] = useState('RUB');
   const [isLoading, setIsLoading] = useState(true);
   const [currList, setCurrList] = useState<CurrencyType>([]);
 
-  useEffect(() => {
+  const handleCurrencyValues = (value: string) => {
     setIsLoading(true);
-    let currValue = handleCurrency(lang);
-    setCurrency(currValue);
-    getAllCurrency(currValue)
-      .then((res) => setCurrList(Object.entries(res.conversion_rates) as CurrencyType))
-      .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false));
-  }, [lang]);
-
-  useEffect(() => {
-    // console.log(currList[0][0]);
-  }, [currList]);
-
-  const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setIsLoading(true);
-    getAllCurrency(e.target.value)
+    getAllCurrency(value)
       .then((res) => setCurrList(Object.entries(res.conversion_rates) as CurrencyType))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   };
 
+  useEffect(() => {
+    let currValue = handleCurrency(lang);
+    setCurrency(currValue);
+    handleCurrencyValues(currValue);
+    const timer = setTimeout(() => {
+      handleCurrencyValues(currValue);
+    }, 60000);
+    return () => clearTimeout(timer);
+  }, [lang]);
+
   return (
     <section className={styles.section}>
-      <h1>Конвертер валют</h1>
-      <p>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Конвертер валют</h1>
+        <button className={styles.button} onClick={() => handleCurrencyValues(currency)}></button>
+      </div>
+
+      <p className={styles.subtitle}>
         Если у вас есть 1{' '}
-        <select value={currList.length ? currList[0][0] : currency} onChange={(e) => handleChangeSelect(e)}>
+        <select
+          value={currList.length ? currList[0][0] : currency}
+          onChange={(e) => handleCurrencyValues(e.target.value)}
+          className={styles.select}
+        >
           {currList.length &&
             currList.map(
               ([key]) =>
@@ -50,11 +53,16 @@ export const Home: FC<IProps> = ({ lang }) => {
                   </option>
                 ),
             )}
-        </select>{' '}
+        </select>
         , вы можете обменять его на:
       </p>
+      <div className={styles.container}>
+        <p className={styles.heading}>Курс</p>
+        <p className={styles.heading}>Название</p>
+        <p className={styles.heading}>Код</p>
+      </div>
       {isLoading ? (
-        <p>Идёт загрузка</p>
+        <Loader />
       ) : (
         <>
           {currList.length &&
@@ -62,10 +70,9 @@ export const Home: FC<IProps> = ({ lang }) => {
               ([key, value]) =>
                 CurrencyDesc[key] && (
                   <div key={key} className={styles.container}>
-                    <p>{value}</p>
-                    <p>
-                      {CurrencyDesc[key]} ({key})
-                    </p>
+                    <p className={styles.subheading}>{value}</p>
+                    <p className={styles.subheading}>{CurrencyDesc[key]}</p>
+                    <p className={styles.subheading}>({key})</p>
                   </div>
                 ),
             )}

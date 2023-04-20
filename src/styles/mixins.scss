@@ -1,31 +1,7 @@
 @mixin section {
   width: 100%;
   max-width: 1200px;
-  padding: 80px 10px 0;
+  padding: 80px 0 50px;
   margin: 0 auto;
   box-sizing: border-box;
-
-  &__heading {
-    margin: 0 0 20px;
-    font-weight: 600;
-    font-size: 25px;
-    line-height: 34px;
-    text-align: left;
-    color: #ff3c00;
-  }
-  &__description {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 27px;
-    text-align: left;
-    margin: 0;
-
-    &_additional {
-      margin: 10px 0;
-      & span {
-        color: yellow;
-      }
-    }
-  }
 }

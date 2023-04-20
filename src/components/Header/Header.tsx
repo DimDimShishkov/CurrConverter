@@ -1,18 +1,17 @@
-import React, { FC } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
-import { LanguagePrefix, NavigationConverter, NavigationHome } from '../../shared/index';
+import { NavigationConverter, NavigationHome } from '../../shared/index';
+import { langContext } from 'src/utils/langContext';
 
-interface IProps {
-  lang: LanguagePrefix;
-}
-
-const Header: FC<IProps> = ({ lang }) => {
+export const Header = () => {
+  const lang = useContext(langContext);
   const toHomeLinkText = NavigationHome[lang];
   const toConverterLinkText = NavigationConverter[lang];
 
   return (
     <header className={styles.header}>
+      <Link to="/" className={styles.header__logo}></Link>
       <nav className={styles.header__nav}>
         <ul className={styles.header__items}>
           <li>
@@ -30,5 +29,3 @@ const Header: FC<IProps> = ({ lang }) => {
     </header>
   );
 };
-
-export default Header;

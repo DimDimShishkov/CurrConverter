@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import axios from 'axios';
 import './App.module.scss';
-import Header from '../Header/Header';
+import { Header } from '../Header/Header';
 import { Home } from '../Home/Home';
 import { Converter } from '../Converter/Converter';
 import { LanguagePrefix } from '@shared/index';
-import axios from 'axios';
 import { apiKey, apiURl } from 'src/utils/constants';
 import { handleLanguage } from 'src/utils/hooks';
 import NoPage from '../NoPage/NoPage';
+import { langContext } from 'src/utils/langContext';
 
 function App() {
   const [lang, setLang] = useState<LanguagePrefix>('ru');
@@ -26,18 +26,16 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="App">
-        <Header lang={lang} />
-        <Switch>
-          <Route exact path="/">
-            <Home lang={lang} />
-          </Route>
-          <Route path="/converter">
-            <Converter lang={lang} />
-          </Route>
-          <Route path="*" component={NoPage} />
-        </Switch>
-      </div>
+      <langContext.Provider value={lang}>
+        <div className="App">
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Home}></Route>
+            <Route path="/converter" component={Converter}></Route>
+            <Route path="*" component={NoPage} />
+          </Switch>
+        </div>
+      </langContext.Provider>
     </BrowserRouter>
   );
 }
