@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
-import './App.module.scss';
 import { Header } from '../Header/Header';
 import { Home } from '../Home/Home';
 import { Converter } from '../Converter/Converter';
@@ -27,14 +26,12 @@ function App() {
   return (
     <BrowserRouter>
       <langContext.Provider value={lang}>
-        <div className="App">
-          <Header />
-          <Switch>
-            <Route exact path="/CurrConverter/" component={Home}></Route>
-            <Route path="/CurrConverter/converter" component={Converter}></Route>
-            <Route path="/CurrConverter/*" component={NoPage} />
-          </Switch>
-        </div>
+        <Header />
+        <Switch>
+          <Route exact path="/CurrConverter/" component={Home}></Route>
+          <Route path="/CurrConverter/converter" component={Converter}></Route>
+          <Route path="/CurrConverter/*" component={NoPage} />
+        </Switch>
       </langContext.Provider>
     </BrowserRouter>
   );

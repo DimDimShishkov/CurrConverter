@@ -6,7 +6,7 @@ function NoPage() {
   return (
     <section className={styles.section}>
       <p className={styles.heading}>Страница не найдена</p>
-      <Link to="/" className={styles.link}>
+      <Link to="/CurrConverter/" className={styles.link}>
         Вернуться на главную
       </Link>
     </section>
