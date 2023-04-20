@@ -30,9 +30,9 @@ function App() {
         <div className="App">
           <Header />
           <Switch>
-            <Route exact path="/" component={Home}></Route>
-            <Route path="/converter" component={Converter}></Route>
-            <Route path="*" component={NoPage} />
+            <Route exact path="/CurrConverter/" component={Home}></Route>
+            <Route path="/CurrConverter/converter" component={Converter}></Route>
+            <Route path="/CurrConverter/*" component={NoPage} />
           </Switch>
         </div>
       </langContext.Provider>
