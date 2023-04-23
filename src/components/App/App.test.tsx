@@ -4,9 +4,9 @@ import App from './App';
 import axios from 'axios';
 import { apiKey, apiURl } from 'src/utils/constants';
 
-test('renders learn react link', () => {
+test('render header', () => {
   render(<App />);
-  const linkElement = screen.getByText(/Конвертер валют/i);
+  const linkElement = screen.getByText(/На главную/i);
   expect(linkElement).toBeInTheDocument();
 });
 

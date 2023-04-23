@@ -1,0 +1,33 @@
+.carousel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.heading {
+  margin: 0px;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.items {
+  width: 200px;
+  overflow: hidden;
+  position: relative;
+  height: 50px;
+}
+
+.item {
+  position: absolute;
+  margin: 0;
+  opacity: 0;
+  top: 10px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.visible {
+  opacity: 1;
+}

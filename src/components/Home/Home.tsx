@@ -5,6 +5,7 @@ import { handleCurrency } from 'src/utils/hooks';
 import { getAllCurrency } from 'src/api/api';
 import Loader from '../Loader/Loader';
 import { langContext } from 'src/utils/langContext';
+import { VerticalCarousel } from '../VerticalCarousel/VerticalCarousel';
 
 export const Home = () => {
   const lang = useContext(langContext);
@@ -37,8 +38,10 @@ export const Home = () => {
         <button className={styles.button} onClick={() => handleCurrencyValues(currency)}></button>
       </div>
 
+      {currList.length && <VerticalCarousel leadingText={`1 ${currList[0][0]} это `} data={currList} />}
+
       <p className={styles.subtitle}>
-        Если у вас есть 1{' '}
+        Так же 1
         <select
           value={currList.length ? currList[0][0] : currency}
           onChange={(e) => handleCurrencyValues(e.target.value)}
@@ -54,7 +57,7 @@ export const Home = () => {
                 ),
             )}
         </select>
-        , вы можете обменять его на:
+        , вы можете обменять на:
       </p>
       <div className={styles.container}>
         <p className={styles.heading}>Курс</p>
